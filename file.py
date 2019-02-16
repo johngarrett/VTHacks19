@@ -6,4 +6,4 @@ port = serial.Serial(device_name, baudrate = rate, timeout = 3.0)
 
 while True:
     recieved = port.read(32)
-    print("We read: " + recieved)
+    print(recieved)

@@ -66,6 +66,8 @@ void loop()
         lcd.print("#");
         lcd.setCursor(i,1);
         lcd.print("#");
+        Serial.print("Button 3, ");
+        Serial.println(btn3);
       } 
       else {
         if(btn == 0 && btn2 == 0) {
@@ -77,26 +79,38 @@ void loop()
         else if(btn == 1 && btn2 == 0){
           lcd.setCursor(i,1);
           lcd.print("|");
+          Serial.print("Button 1, ");
+          Serial.println(btn);
         } 
         else if(btn == 0 && btn2 == 1){
           lcd.setCursor(i,0);
           lcd.print(".");
           lcd.setCursor(i,1);
           lcd.print("|");
+          Serial.print("Button 2, ");
+          Serial.println(btn2);
         } 
         else if(btn == 1 && btn2 == 1){
           lcd.setCursor(i,0);
           lcd.print("|");
           lcd.setCursor(i,1);
           lcd.print("|");
-        }
+          Serial.print("Button 1, ");
+          Serial.println(btn);
+          Serial.print("Button 2, ");
+          Serial.println(btn2);
+      }
       }
   
     }
     lcd.setCursor(0,0);
     analog = analogRead(analogPin);
+    Serial.println("Analog 1, ");
+    Serial.println(analog);
     lcd.setCursor(0,1);
     analog2 = analogRead(analogPin2);
+    Serial.print("Analog 2, ");
+    Serial.println(analog2);
 }
 
 /*********************************************************************************************************
