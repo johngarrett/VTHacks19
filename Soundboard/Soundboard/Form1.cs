@@ -1,11 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Media;
 using System.Windows.Forms;
 
 // This is the code for your desktop app.
@@ -18,7 +12,12 @@ namespace Soundboard
         public Form1()
         {
             InitializeComponent();
-            Port.Open();
+            try {
+                Port.Open();
+            }
+            catch (Exception exc) { 
+                MessageBox.Show("No Device connected.\n Verify COM number.");
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -28,20 +27,17 @@ namespace Soundboard
 
         }
 
+        private void playSimpleSound(String filename)
+        {
+            SoundPlayer simpleSound = new SoundPlayer();
+            simpleSound.Play();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -49,11 +45,6 @@ namespace Soundboard
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
         {
 
         }
@@ -70,7 +61,12 @@ namespace Soundboard
 
         private void Port_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            MessageBox.Show(Port.readLine());
+            MessageBox.Show(Port.ReadLine());
+        }
+
+        private void leftKnob_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
