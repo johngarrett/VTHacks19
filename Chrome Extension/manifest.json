@@ -1,0 +1,9 @@
+{
+  "name": "Fractal Tree",
+  "version": "1.0",
+  "description": "Build meaningful habits!",
+  "manifest_version": 2,
+  "chrome_url_overrides" : {
+    "newtab": "newtab.html"
+  }
+}
