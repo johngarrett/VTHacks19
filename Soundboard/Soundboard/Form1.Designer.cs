@@ -28,31 +28,34 @@ namespace Soundboard
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.middleButton = new System.Windows.Forms.Button();
             this.rightButton = new System.Windows.Forms.Button();
             this.leftButton = new System.Windows.Forms.Button();
             this.rightKnob = new System.Windows.Forms.Button();
             this.leftKnob = new System.Windows.Forms.Button();
+            this.Port = new System.IO.Ports.SerialPort(this.components);
             this.SuspendLayout();
             // 
             // middleButton
             // 
-            this.middleButton.BackgroundImage = global::Soundboard.Properties.Resources.button3;
+            this.middleButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("middleButton.BackgroundImage")));
             this.middleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.middleButton.Location = new System.Drawing.Point(573, 36);
+            this.middleButton.Location = new System.Drawing.Point(573, 104);
             this.middleButton.Name = "middleButton";
-            this.middleButton.Size = new System.Drawing.Size(239, 301);
+            this.middleButton.Size = new System.Drawing.Size(239, 198);
             this.middleButton.TabIndex = 0;
             this.middleButton.UseVisualStyleBackColor = true;
             this.middleButton.Click += new System.EventHandler(this.button1_Click_2);
             // 
             // rightButton
             // 
-            this.rightButton.BackgroundImage = global::Soundboard.Properties.Resources.button1;
+            this.rightButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rightButton.BackgroundImage")));
             this.rightButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rightButton.Location = new System.Drawing.Point(818, 36);
+            this.rightButton.Location = new System.Drawing.Point(328, 111);
             this.rightButton.Name = "rightButton";
-            this.rightButton.Size = new System.Drawing.Size(239, 301);
+            this.rightButton.Size = new System.Drawing.Size(239, 184);
             this.rightButton.TabIndex = 1;
             this.rightButton.UseVisualStyleBackColor = true;
             this.rightButton.Click += new System.EventHandler(this.button2_Click);
@@ -60,12 +63,12 @@ namespace Soundboard
             // leftButton
             // 
             this.leftButton.BackColor = System.Drawing.Color.Transparent;
-            this.leftButton.BackgroundImage = global::Soundboard.Properties.Resources.button4;
+            this.leftButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("leftButton.BackgroundImage")));
             this.leftButton.FlatAppearance.BorderSize = 0;
             this.leftButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.leftButton.Location = new System.Drawing.Point(328, 46);
+            this.leftButton.Location = new System.Drawing.Point(818, 98);
             this.leftButton.Name = "leftButton";
-            this.leftButton.Size = new System.Drawing.Size(239, 291);
+            this.leftButton.Size = new System.Drawing.Size(239, 210);
             this.leftButton.TabIndex = 3;
             this.leftButton.UseVisualStyleBackColor = false;
             this.leftButton.Click += new System.EventHandler(this.button4_Click);
@@ -77,9 +80,9 @@ namespace Soundboard
             this.rightKnob.FlatAppearance.BorderSize = 0;
             this.rightKnob.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rightKnob.ForeColor = System.Drawing.Color.Transparent;
-            this.rightKnob.Location = new System.Drawing.Point(150, 36);
+            this.rightKnob.Location = new System.Drawing.Point(153, 98);
             this.rightKnob.Name = "rightKnob";
-            this.rightKnob.Size = new System.Drawing.Size(116, 116);
+            this.rightKnob.Size = new System.Drawing.Size(116, 114);
             this.rightKnob.TabIndex = 5;
             this.rightKnob.UseVisualStyleBackColor = false;
             // 
@@ -89,11 +92,16 @@ namespace Soundboard
             this.leftKnob.BackgroundImage = global::Soundboard.Properties.Resources.knob12;
             this.leftKnob.FlatAppearance.BorderSize = 0;
             this.leftKnob.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.leftKnob.Location = new System.Drawing.Point(28, 36);
+            this.leftKnob.Location = new System.Drawing.Point(31, 98);
             this.leftKnob.Name = "leftKnob";
-            this.leftKnob.Size = new System.Drawing.Size(116, 116);
+            this.leftKnob.Size = new System.Drawing.Size(116, 114);
             this.leftKnob.TabIndex = 6;
             this.leftKnob.UseVisualStyleBackColor = false;
+            // 
+            // Port
+            // 
+            this.Port.PortName = "COM3";
+            this.Port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.Port_DataReceived);
             // 
             // Form1
             // 
@@ -120,6 +128,7 @@ namespace Soundboard
         private System.Windows.Forms.Button leftButton;
         private System.Windows.Forms.Button rightKnob;
         private System.Windows.Forms.Button leftKnob;
+        public System.IO.Ports.SerialPort Port;
     }
 }
 

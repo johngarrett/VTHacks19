@@ -18,6 +18,7 @@ namespace Soundboard
         public Form1()
         {
             InitializeComponent();
+            Port.Open();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -65,6 +66,11 @@ namespace Soundboard
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Port_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            MessageBox.Show(Port.readLine());
         }
     }
 }
