@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _decrementCounter() {
     setState(() {
-      _counter--;
+      _counter = (_counter > 0) ? _counter - 1: 0;
     });
   }
   @override
@@ -39,27 +39,34 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Fractals"),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Container(padding: EdgeInsets.only(bottom: 5.0),child: Fractal(_counter.toDouble())),
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
+        child: SafeArea(
+          left: true,
+          top: true,
+          right: true,
+          bottom: true,
+          minimum: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(padding: EdgeInsets.only(bottom: 32.0),child: Fractal(_counter.toDouble())),
+              Text(
+                'You have pushed the button this many times:',
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.display1,
+              ),
 
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-              RaisedButton(onPressed: _decrementCounter, child: Text("-"),),
-              RaisedButton(onPressed: _incrementCounter, child: Text("+"),),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                RaisedButton(onPressed: _decrementCounter, child: Text("-"),),
+                RaisedButton(onPressed: _incrementCounter, child: Text("+"),),
+              ],
+              ),
             ],
-            ),
-          ],
-        ),
+          ),
       ),
+    ),
     );
   }
 }

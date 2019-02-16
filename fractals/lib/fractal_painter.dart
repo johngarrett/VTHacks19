@@ -52,7 +52,7 @@ class FractalState extends State<Fractal> with TickerProviderStateMixin {
 
 class FractalPainter extends CustomPainter {
   double _depth;
-  final double edgeLength = 7.0;
+  final double edgeLength = 8.0;
 
   FractalPainter(this._depth);
 
@@ -65,11 +65,20 @@ class FractalPainter extends CustomPainter {
     );
   }
 
+  double lines = 9;
+  double lineCount = 0;
   void drawPart(Canvas canvas, Offset start, double angle, double depth) {
     if (depth <= 0.0) {
       return;
     }
-    //sets the end point for the line
+//    depth = 8.0;
+//    if (lineCount >= lines) {
+//      return;
+//    }
+
+    lineCount++;
+    print(lineCount);
+//    sets the end point for the line
     var end = start.translate(
         cos(angle) * depth * edgeLength,
         sin(angle) * depth * edgeLength
@@ -83,13 +92,16 @@ class FractalPainter extends CustomPainter {
     //draw line from start to end
     canvas.drawLine(start, end, paint);
 
-    //draw two lines from end of new line
-    var angleStep = pi / 6;
-    Random rng = Random();
-    if(angle <= 0 && angle >= -pi) {
-        drawPart(canvas, end, angle - angleStep, depth - 1.0);
-        drawPart(canvas, end, angle + angleStep, depth - 1.0);
-    }
+      //draw two lines from end of new line
+      var angleStep = pi / 6;
+      if (angle <= 0 && angle >= -pi) {
+//        if (lines % 2 ==0) {
+          drawPart(canvas, end, angle - angleStep, depth - 1.0);
+//        } else {
+          drawPart(canvas, end, angle + angleStep, depth - 1.0);
+//        }
+      }
+//      }
   }
 
   @override

@@ -1,0 +1,2 @@
+/Users/zeke/Programming/VTHacks19/Aruduino/Soundboard/Soundboard/obj/x86/Debug/Soundboard.csprojAssemblyReference.cache
+/Users/zeke/Programming/VTHacks19/Aruduino/Soundboard/Soundboard/obj/x86/Debug/Soundboard.csproj.CoreCompileInputs.cache
