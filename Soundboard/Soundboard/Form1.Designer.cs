@@ -33,10 +33,10 @@ namespace Soundboard
             this.middleButton = new System.Windows.Forms.Button();
             this.rightButton = new System.Windows.Forms.Button();
             this.leftButton = new System.Windows.Forms.Button();
-            this.rightKnob = new System.Windows.Forms.Button();
-            this.leftKnob = new System.Windows.Forms.Button();
             this.Port = new System.IO.Ports.SerialPort(this.components);
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // middleButton
@@ -49,6 +49,7 @@ namespace Soundboard
             this.middleButton.Size = new System.Drawing.Size(239, 198);
             this.middleButton.TabIndex = 0;
             this.middleButton.UseVisualStyleBackColor = true;
+            this.middleButton.Click += new System.EventHandler(this.middleButton_Click);
             // 
             // rightButton
             // 
@@ -76,34 +77,6 @@ namespace Soundboard
             this.leftButton.UseVisualStyleBackColor = false;
             this.leftButton.Click += new System.EventHandler(this.button4_Click);
             // 
-            // rightKnob
-            // 
-            this.rightKnob.BackColor = System.Drawing.Color.Transparent;
-            this.rightKnob.BackgroundImage = global::Soundboard.Properties.Resources.knob11;
-            this.rightKnob.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rightKnob.FlatAppearance.BorderSize = 0;
-            this.rightKnob.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rightKnob.ForeColor = System.Drawing.Color.Transparent;
-            this.rightKnob.Location = new System.Drawing.Point(153, 146);
-            this.rightKnob.Name = "rightKnob";
-            this.rightKnob.Size = new System.Drawing.Size(116, 114);
-            this.rightKnob.TabIndex = 5;
-            this.rightKnob.UseVisualStyleBackColor = false;
-            // 
-            // leftKnob
-            // 
-            this.leftKnob.BackColor = System.Drawing.Color.Transparent;
-            this.leftKnob.BackgroundImage = global::Soundboard.Properties.Resources.knob12;
-            this.leftKnob.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.leftKnob.FlatAppearance.BorderSize = 0;
-            this.leftKnob.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.leftKnob.Location = new System.Drawing.Point(31, 146);
-            this.leftKnob.Name = "leftKnob";
-            this.leftKnob.Size = new System.Drawing.Size(116, 114);
-            this.leftKnob.TabIndex = 6;
-            this.leftKnob.UseVisualStyleBackColor = false;
-            this.leftKnob.Click += new System.EventHandler(this.leftKnob_Click);
-            // 
             // Port
             // 
             this.Port.PortName = "COM3";
@@ -118,21 +91,33 @@ namespace Soundboard
             this.label1.TabIndex = 7;
             this.label1.Text = "label1";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Image = global::Soundboard.Properties.Resources.knob12;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 146);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(117, 115);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Soundboard.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(1132, 466);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.leftKnob);
-            this.Controls.Add(this.rightKnob);
             this.Controls.Add(this.leftButton);
             this.Controls.Add(this.rightButton);
             this.Controls.Add(this.middleButton);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,10 +128,9 @@ namespace Soundboard
         private System.Windows.Forms.Button middleButton;
         private System.Windows.Forms.Button rightButton;
         private System.Windows.Forms.Button leftButton;
-        private System.Windows.Forms.Button rightKnob;
-        private System.Windows.Forms.Button leftKnob;
         public System.IO.Ports.SerialPort Port;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
