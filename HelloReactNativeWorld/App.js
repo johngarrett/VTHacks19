@@ -1,21 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { Alert, AppRegistry, Button, StyleSheet, View } from 'react-native';
+// import Canvas from 'react-native-canvas';
 
-export default class App extends React.Component {
+export default class HelloWorldApp extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._draw}
+            title="Press Me"
+          />
+        </View>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+let count = 0;
+
+function _draw(){
+	count++;
+	Alert.alert(count);
+}
+
+
+
+
+
