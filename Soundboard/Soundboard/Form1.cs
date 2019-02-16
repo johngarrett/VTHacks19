@@ -1,4 +1,6 @@
 using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Media;
 using System.Windows.Forms;
 
@@ -29,19 +31,47 @@ namespace Soundboard
 
         private void playSimpleSound(String filename)
         {
-            SoundPlayer simpleSound = new SoundPlayer();
+            SoundPlayer simpleSound = new SoundPlayer("C:/Users/Cade/Desktop/VTHack/VTHacks19/Soundboard/Assets/Good/" + filename);
             simpleSound.Play();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public static Image RotateImage(Image img, float rotationAngle)
         {
+            //create an empty Bitmap image
+            Bitmap bmp = new Bitmap(img.Width, img.Height);
 
+            //turn the Bitmap into a Graphics object
+            Graphics gfx = Graphics.FromImage(bmp);
+
+            //now we set the rotation point to the center of our image
+            gfx.TranslateTransform((float)bmp.Width / 2, (float)bmp.Height / 2);
+
+            //now rotate the image
+            gfx.RotateTransform(rotationAngle);
+
+            gfx.TranslateTransform(-(float)bmp.Width / 2, -(float)bmp.Height / 2);
+
+            //set the InterpolationMode to HighQualityBicubic so to ensure a high
+            //quality image once it is transformed to the specified size
+            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            //now draw our new image onto the graphics object
+            gfx.DrawImage(img, new Point(0, 0));
+
+            //dispose of our Graphics object
+            gfx.Dispose();
+
+            //return the image
+            return bmp;
         }
 
+        private void updateImage(PictureBox pB, float rotation) {
+            pB.Image = RotateImage(pB.Image, rotation);
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            playSimpleSound("Pop.wav");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -51,7 +81,7 @@ namespace Soundboard
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            playSimpleSound("Glass.wav");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -67,6 +97,12 @@ namespace Soundboard
         private void leftKnob_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void middleButton_Click(object sender, EventArgs e)
+        {
+            playSimpleSound("Funk.wav");
+            updateImage(pictureBox1, (float)(Math.PI / 8.0));
         }
     }
 }
