@@ -10,14 +10,18 @@ using System.Windows.Forms;
 namespace Soundboard
 {
     public partial class Form1 : Form
-    {
+    {Image knobImg = null;
         public Form1()
         {
             InitializeComponent();
+            
             try {
+                knobImg = Image.FromFile("C:/Users/Cade/Desktop/VTHack/VTHacks19/Soundboard/Assets/knob1.png");
                 Port.Open();
             }
-            catch (Exception exc) { 
+#pragma warning disable CS0168 // Variable is declared but never used
+            catch (Exception exc) {
+#pragma warning restore CS0168 // Variable is declared but never used
                 MessageBox.Show("No Device connected.\n Verify COM number.");
             }
         }
@@ -35,38 +39,29 @@ namespace Soundboard
             simpleSound.Play();
         }
 
-        public static Image RotateImage(Image img, float rotationAngle)
+        private Bitmap RotateKnob(Bitmap bmp, float angle)
         {
-            //create an empty Bitmap image
-            Bitmap bmp = new Bitmap(img.Width, img.Height);
+            Bitmap rotatedImage = new Bitmap(bmp.Width, bmp.Height);
+            using (Graphics g = Graphics.FromImage(rotatedImage))
+            {
+                // Set the rotation point to the center in the matrix
+                g.TranslateTransform(bmp.Width / 2, bmp.Height / 2);
+                // Rotate
+                g.RotateTransform(angle);
+                // Restore rotation point in the matrix
+                g.TranslateTransform(-bmp.Width / 2, -bmp.Height / 2);
+                // Draw the image on the bitmap
+                g.DrawImage(bmp, new Point(0, 0));
+            }
 
-            //turn the Bitmap into a Graphics object
-            Graphics gfx = Graphics.FromImage(bmp);
-
-            //now we set the rotation point to the center of our image
-            gfx.TranslateTransform((float)bmp.Width / 2, (float)bmp.Height / 2);
-
-            //now rotate the image
-            gfx.RotateTransform(rotationAngle);
-
-            gfx.TranslateTransform(-(float)bmp.Width / 2, -(float)bmp.Height / 2);
-
-            //set the InterpolationMode to HighQualityBicubic so to ensure a high
-            //quality image once it is transformed to the specified size
-            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-            //now draw our new image onto the graphics object
-            gfx.DrawImage(img, new Point(0, 0));
-
-            //dispose of our Graphics object
-            gfx.Dispose();
-
-            //return the image
-            return bmp;
+            return rotatedImage;
         }
 
-        private void updateImage(PictureBox pB, float rotation) {
-            pB.Image = RotateImage(pB.Image, rotation);
+
+
+
+        private void updateKnob(PictureBox pB, float rotation) {
+            pB.Image = RotateKnob(new Bitmap(knobImg), rotation);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -102,7 +97,7 @@ namespace Soundboard
         private void middleButton_Click(object sender, EventArgs e)
         {
             playSimpleSound("Funk.wav");
-            updateImage(pictureBox1, (float)(Math.PI / 8.0));
+            updateKnob(pictureBox1, (float)(Math.PI));
         }
     }
 }
