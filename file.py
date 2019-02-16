@@ -1,6 +1,6 @@
 import serial
 
-baudrate = 115200
+rate = 115200
 device_name = "dev/tty.usbserial"
 port = serial.Serial(device_name, baudrate = rate, timeout = 3.0)
 
