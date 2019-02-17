@@ -50,11 +50,11 @@ z.grid(row=1, column=2)
 z.set(0)
 
 def updateLeftScale(knobReading):
-    w.set(int(knobReading/102.4))
+    w.set(int(knobReading))
     return
 
 def updateRightScale(knobReading):
-    z.set(int(knobReading/102.4))
+    z.set(int(knobReading))
     return
 
 
@@ -95,6 +95,8 @@ a = 0
 b = 0
 c = 0
 d = 0
+previousValue = 0
+i = 1
 while True:
     master.update()
 
@@ -142,15 +144,16 @@ while True:
         recieved = recieved.replace(':', '')
         recieved.strip()
         if len(recieved) > 0:
-            print(int(int(recieved) / 102.4))
-            updateRightScale(float(recieved))
-    elif "Z" in recieved:
-        recieved = recieved.replace("Z",'')
-        recieved = recieved.replace("X",'')
-        recieved = recieved.replace("\r", '')
-        recieved = recieved.replace("\n", '')
-        recieved = recieved.replace(':', '')
-        recieved.strip()
-        if len(recieved) > 0:
-            updateLeftScale(float(recieved))
-            print(int(int(recieved) / 102.4))
+            if (i % 2):
+                i = 0
+            else:
+                i = i + 1
+            currentValue = int(int(recieved) / 102.4)
+            delta_x = abs(previousValue - int(int(recieved) / 102.4))
+            print(delta_x)
+            if delta_x > 1:
+                currentValue = max(currentValue, previousValue)
+                previousValue = max(currentValue, previousValue)
+                continue
+            updateRightScale(currentValue)
+            previousValue = int(int(recieved) / 102.4)
