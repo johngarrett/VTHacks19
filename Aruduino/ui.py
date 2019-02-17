@@ -19,9 +19,9 @@ port = serial.Serial(device_name, baudrate = rate, timeout = 3.0)
 pg.mixer.init()
 pg.init()
 
-a1 = pg.mixer.Sound("/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/longDrums.wav")
-a2 = pg.mixer.Sound("/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/Ping.wav")
-a3 = pg.mixer.Sound("/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/guitar.wav")
+a1 = pg.mixer.Sound("/Users/zeke/Programming/VTHacks19/Aruduino/Piano/C.wav")
+a2 = pg.mixer.Sound("/Users/zeke/Programming/VTHacks19/Aruduino/Piano/E.wav")
+a3 = pg.mixer.Sound("/Users/zeke/Programming/VTHacks19/Aruduino/Piano/G.wav")
 
 choice = tk.IntVar()
 titleFont = font.Font(family="Helvetica", size=18, weight = 'bold')
@@ -42,29 +42,42 @@ z = Scale(master, from_=10, to=0, orient=VERTICAL)
 z.grid(row=1, column=0)
 z.set(0)
 
+fx0 = (AudioEffectsChain())
+fx1 = (AudioEffectsChain() .reverb())
+fx2 = (AudioEffectsChain() .reverb() .reverb())
+fx3 = (AudioEffectsChain() .reverb() .reverb() .reverb())
+fx4 = (AudioEffectsChain() .reverb() .reverb() .reverb() .reverb())
+fx5 = (AudioEffectsChain() .reverb() .reverb() .reverb() .reverb() .reverb())
+fx6 = (AudioEffectsChain() .reverb() .reverb() .reverb() .reverb() .reverb() .reverb())
+fx7 = (AudioEffectsChain() .reverb() .reverb() .reverb() .reverb() .reverb() .reverb() .reverb())
+fx8 = (AudioEffectsChain() .reverb() .reverb() .reverb() .reverb() .reverb() .reverb() .reverb() .reverb())
+fx9 = (AudioEffectsChain() .reverb() .reverb() .reverb() .reverb() .reverb() .reverb() .reverb() .reverb() .reverb())
+Fxs = {0:fx0, 1:fx1, 2:fx2, 3:fx3, 4:fx4, 5:fx5, 6:fx6, 7:fx7, 8:fx8, 9:fx9}
+fx = Fxs.get(0)
+
 def updateLeftScale(knobReading):
     z.set(int(knobReading))
-    if knobReading != 0:
-        print(4900 - int(44100 * (1.0/knobReading)))
-        pg.mixer.pre_init(1, 1, 1, 1)
+    fx = Fxs.get(z)
     return
+
 
 def doNothing():
     return
 
-button1 = tk.Button(master, text='s n a r e', font = buttonFont, command=doNothing, height=3, width=30, justify=tk.LEFT, bg='#F67280')
+button1 = tk.Button(master, text='s n a r e', font = buttonFont, command=doNothing, height=3, width=20, fg = 'black', justify=tk.LEFT, background='#F67280')
 button1.grid(row=3,column=0)
 
 
-button2 = tk.Button(master, text='k i c k', font = buttonFont, command=doNothing, height=3, width=30, bg='#C06C84')
+button2 = tk.Button(master, text='k i c k', font = buttonFont, command=doNothing, height=3, width=20, fg = 'black', background='#C06C84')
 button2.grid(row=3,column=1)
 
 
-button3 = tk.Button(master, text='h a t', font = buttonFont,activebackground = 'black', command=doNothing, height=3, width=30, justify=tk.RIGHT, bg='#6C5B7B')
+button3 = tk.Button(master, text='h a t', font = buttonFont, command=doNothing, height=3, width=20, fg = 'black', justify=tk.RIGHT, background='#6C5B7B')
 button3.grid(row=3,column=2)
 
 def invokeButton1():
     button1.invoke()
+    button1.state = tk.ACTIVE
     return
 
 def invokeButton2():
@@ -85,11 +98,13 @@ previousValue = 0
 while True:
     master.update()
 
+
+    #C E G
     recieved = port.read(8).decode('utf_8');
     if "A" in recieved:
         a = a + 1
         if a % 6 == 0:
-            print("Button one was successfuly pushed sir.")
+            print("Button one was successfully pressed.")
             invokeButton1()
             a1.stop()
             a1.play()
@@ -98,7 +113,7 @@ while True:
     elif "B" in recieved:
         b = b + 1
         if b % 6 == 0:
-            print("Button two was successfuly pushed madam.")
+            print("Button two was successfuly pushed.")
             invokeButton2()
             a2.stop()
             a2.play()
@@ -107,7 +122,7 @@ while True:
     elif "C" in recieved:
         c = c + 1
         if c % 6 == 0:
-            print("Button threeeeee was successfuly pushed bruhhh!.")
+            print("Button 3hree was selected successfully.")
             invokeButton3()
             a3.stop()
             a3.play()
