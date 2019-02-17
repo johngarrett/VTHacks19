@@ -33,11 +33,11 @@ z = Scale(master, from_=200, to=0, orient=VERTICAL)
 z.grid(row=1, column=2)
 z.set(75)
 
-def updateLeftScale(int knobReading):
+def updateLeftScale(knobReading):
     w.set(knobReading/10)
     return
 
-def updateRightScale(int knobReading):
+def updateRightScale(knobReading):
     z.set(knobReading/10)
     return
 
