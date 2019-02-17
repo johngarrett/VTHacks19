@@ -12,7 +12,7 @@ master = tk.Tk()
 master.title('Mukbang Soundboard')
 master.configure(background='#355C7D')
 
-rate=1
+rate=30
 device_name = "/dev/cu.usbmodem14201"
 port = serial.Serial(device_name, baudrate = rate, timeout = 3.0)
 
@@ -149,7 +149,6 @@ while True:
                 i = i + 1
             currentValue = int(int(recieved) / 102.4)
             delta_x = abs(previousValue - int(int(recieved) / 102.4))
-            print(delta_x)
             if delta_x > 1:
                 currentValue = max(currentValue, previousValue)
                 previousValue = max(currentValue, previousValue)

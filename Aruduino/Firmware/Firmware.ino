@@ -40,7 +40,7 @@ void setup()
     pinMode(button2, INPUT);
     pinMode(button2, INPUT);
     // Print a message to the LCD.
-    Serial.begin(9600);
+    Serial.begin(30);
     delay(1000);
 }
 
@@ -52,14 +52,14 @@ void loop()
     
     prev_analog = analog;
     prev_analog2 = analog2;
-
+    char letter = ' ';
     for(int i = 16; i>=0; i--){
       if(btn3 == 1) { //btn 3 pushed 
         lcd.setCursor(i,0);
         lcd.print("#");
         lcd.setCursor(i,1);
         lcd.print("#");
-        Serial.print("C");
+        letter = 'C';
       } 
       else {
         if(btn == 0 && btn2 == 0) {
@@ -67,27 +67,30 @@ void loop()
           lcd.print(" ");
           lcd.setCursor(i,1);
           lcd.print(".");
-        } 
+        }
         else if(btn == 1 && btn2 == 0){ //btn 1 pushed
           lcd.setCursor(i,1);
           lcd.print("|");
-          Serial.print("A");
+          letter = 'A';
         } 
         else if(btn == 0 && btn2 == 1){ //btn 2 pushed
           lcd.setCursor(i,0);
           lcd.print(".");
           lcd.setCursor(i,1);
           lcd.print("|");
-          Serial.print("B");
-        } 
+          letter = 'B';
+        }
         else if(btn == 1 && btn2 == 1){//btn 1 and 2
           lcd.setCursor(i,0);
           lcd.print("|");
           lcd.setCursor(i,1);
           lcd.print("|");
-          Serial.print("D");
+          letter = 'D';
       }
      }
+    }
+    if (letter != ' '){
+    Serial.print(letter);      
     }
     lcd.setCursor(0,0);
     checkAnalog();
