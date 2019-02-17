@@ -25,11 +25,11 @@ logoImg = tk.Label(master, image=logo).grid(row=1, column=1)
 
 
 
-w = Scale(master, from_=200, to=0, orient=VERTICAL)
+w = Scale(master, from_=100, to=0, orient=VERTICAL)
 w.grid(row=1, column=0)
 w.set(100)
 
-z = Scale(master, from_=200, to=0, orient=VERTICAL)
+z = Scale(master, from_=100, to=0, orient=VERTICAL)
 z.grid(row=1, column=2)
 z.set(75)
 

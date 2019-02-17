@@ -41,12 +41,11 @@ logoImg = tk.Label(master, image=logo).grid(row=1, column=1)
 
 
 
-w = Scale(master, from_=10, to=0, orient=VERTICAL)
-w.grid(row=1, column=0)
-w.set(0)
-
+#w = Scale(master, from_=10, to=0, orient=VERTICAL)
+#w.grid(row=1, column=0)
+#w.set(0)
 z = Scale(master, from_=10, to=0, orient=VERTICAL)
-z.grid(row=1, column=2)
+z.grid(row=1, column=0)
 z.set(0)
 
 def updateLeftScale(knobReading):
@@ -67,15 +66,15 @@ def doNothing():
     return
 
 button1 = tk.Button(master, text='s n a r e', font = buttonFont, command=doNothing, height=3, width=20, fg = 'white', justify=tk.LEFT, background='#F67280')
-button1.grid(row=2,column=0)
+button1.grid(row=3,column=0)
 
 
 button2 = tk.Button(master, text='k i c k', font = buttonFont, command=doNothing, height=3, width=20, fg = 'white', background='#C06C84')
-button2.grid(row=2,column=1)
+button2.grid(row=3,column=1)
 
 
 button3 = tk.Button(master, text='h a t', font = buttonFont, command=doNothing, height=3, width=20, fg = 'white', justify=tk.RIGHT, background='#6C5B7B')
-button3.grid(row=2,column=2)
+button3.grid(row=3,column=2)
 
 def invokeButton1():
     button1.invoke()
