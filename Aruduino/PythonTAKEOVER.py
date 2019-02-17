@@ -13,7 +13,7 @@ import pygame as pg
 import time
 import ui
 from librosa import load
-rate = 300
+rate = 30
 device_name = "/dev/cu.usbmodem14201"
 port = serial.Serial(device_name, baudrate = rate, timeout = 3.0)
 
