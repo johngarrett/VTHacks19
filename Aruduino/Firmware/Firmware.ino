@@ -43,13 +43,12 @@ void loop()
     prev_analog2 = analog2;
 
     for(int i = 16; i>=0; i--){
-      if(btn3 == 1) {
+      if(btn3 == 1) { //btn 3 pushed 
         lcd.setCursor(i,0);
         lcd.print("#");
         lcd.setCursor(i,1);
         lcd.print("#");
-        Serial.print("BTN 3: ");
-        Serial.println(btn3);
+        Serial.print("C");
       } 
       else {
         if(btn == 0 && btn2 == 0) {
@@ -58,29 +57,24 @@ void loop()
           lcd.setCursor(i,1);
           lcd.print(".");
         } 
-        else if(btn == 1 && btn2 == 0){
+        else if(btn == 1 && btn2 == 0){ //btn 1 pushed
           lcd.setCursor(i,1);
           lcd.print("|");
-          Serial.print("BTN 1: ");
-          Serial.println(btn);
+          Serial.print("A");
         } 
-        else if(btn == 0 && btn2 == 1){
+        else if(btn == 0 && btn2 == 1){ //btn 2 pushed
           lcd.setCursor(i,0);
           lcd.print(".");
           lcd.setCursor(i,1);
           lcd.print("|");
-          Serial.print("BTN 2: ");
-          Serial.println(btn2);
+          Serial.print("B");
         } 
-        else if(btn == 1 && btn2 == 1){
+        else if(btn == 1 && btn2 == 1){//btn 1 and 2
           lcd.setCursor(i,0);
           lcd.print("|");
           lcd.setCursor(i,1);
           lcd.print("|");
-          Serial.print("BTN 1: ");
-          Serial.println(btn);
-          Serial.print("BTN 2: ");
-          Serial.println(btn2);
+          Serial.print("D");
       }
      }
     }
