@@ -87,7 +87,7 @@ void checkAnalog(){
     analog = analogRead(analogPin);
 
     if (analog != prev_analog){
-      Serial.print("A 1: ");
+      Serial.print("Z:");
       Serial.println(analog);
     }
     
@@ -95,8 +95,7 @@ void checkAnalog(){
     
     analog2 = analogRead(analogPin2);
     if (analog2 != prev_analog2){
-      Serial.print("A 2: ");
+      Serial.print("X:");
       Serial.println(analog2);
     }  
 }
-

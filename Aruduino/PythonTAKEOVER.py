@@ -2,8 +2,9 @@ import serial
 from pysndfx import AudioEffectsChain
 import pygame as pg
 import time
+import ui
 from librosa import load
-rate = 9600
+rate = 300
 device_name = "/dev/cu.usbmodem14201"
 port = serial.Serial(device_name, baudrate = rate, timeout = 3.0)
 
@@ -19,24 +20,56 @@ a3 = pg.mixer.Sound("/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/guitar
 #      )
 
 #
+
+a = 0
+b = 0
+c = 0
+d = 0
+
 while True:
-    recieved = port.read(32).decode('utf_8');
-    print(recieved)
+    recieved = port.read(8).decode('utf_8');
     if "A" in recieved:
-        print("Button one was successfuly pushed sir.")
-        a1.play()
-        time.sleep(.5)
+        a = a + 1
+        if a % 3 == 0:
+            print("Button one was successfuly pushed sir.")
+            ui.invokeButton1()
+            a1.stop()
+            a1.play()
+            time.sleep(.3)
+            a = 0
     elif "B" in recieved:
-        print("Button two was successfuly pushed madam.")
-        a2.play()
-        time.sleep(.5)
+        b = b + 1
+        if b % 3 == 0:
+            print("Button two was successfuly pushed madam.")
+            ui.invokeButton2()
+            a2.stop()
+            a2.play()
+            time.sleep(.3)
+            b = 0
     elif "C" in recieved:
-        print("Button threeeeee was successfuly pushed bruhhh!.")
-        a3.play()
-        time.sleep(.5)
+        c = c + 1
+        if c % 3 == 0:
+            print("Button threeeeee was successfuly pushed bruhhh!.")
+            ui.invokeButton3()
+            a3.stop()
+            a3.play()
+            time.sleep(.3)
+            c = 0
     elif "D" in recieved:
-        print("Button 1 & 2 recieved successfully")
-        a1.play()
-        a3.play()
-        time.sleep(1)
+        d = d + 1
+        if d % 3 == 0:
+            print("Button 1 & 2 recieved successfully")
+            a1.play()
+            a3.play()
+            time.sleep(.6)
+            d = 0
+    elif "X" in recieved:
+        print(recieved[3:6])
+        try:
+            ui.updateRightScale(int(recieved[3:6]))
+        except:
+            ui.updateLeftScale()
+    elif "Y" in recieved:
+        ui.updateRightScale()
+
 
