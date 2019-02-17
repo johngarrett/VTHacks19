@@ -13,15 +13,15 @@ master.title('Mukbang Soundboard')
 master.configure(background='#355C7D')
 
 rate=1
-device_name = "/dev/cu.usbmodem14201"
+device_name = "/dev/cu.usbmodem14101"
 port = serial.Serial(device_name, baudrate = rate, timeout = 3.0)
 
 pg.mixer.init()
 pg.init()
 
-a1 = pg.mixer.Sound("/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/longDrums.wav")
-a2 = pg.mixer.Sound("/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/Ping.wav")
-a3 = pg.mixer.Sound("/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/guitar.wav")
+a1 = pg.mixer.Sound("/Users/johngarrett/Documents/VTHack19/Assets/Sounds/Good/longDrums.wav")
+a2 = pg.mixer.Sound("/Users/johngarrett/Documents/VTHack19/Assets/Sounds/Good/Ping.wav")
+a3 = pg.mixer.Sound("/Users/johngarrett/Documents/VTHack19/Assets/Sounds/Good/guitar.wav")
 
 choice = tk.IntVar()
 titleFont = font.Font(family="Helvetica", size=18, weight = 'bold')
