@@ -6,16 +6,16 @@ rate = 9600
 device_name = "/dev/cu.usbmodem14201"
 port = serial.Serial(device_name, baudrate = rate, timeout = 3.0)
 
-infile = "/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/Ping.wav"
+infile = "/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/Pop.wav"
 file = "/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/play.wav"
 
 
-
+playsound(file)
 fx = (
       AudioEffectsChain()
       .reverb()
       )
-fx(infile,file)
+fx(infile, file)
 playsound(file)
 
 #while True:
