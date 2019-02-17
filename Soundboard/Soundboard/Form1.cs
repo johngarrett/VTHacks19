@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Media;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 // This is the code for your desktop app.
 // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
@@ -11,19 +12,27 @@ namespace Soundboard
 {
     public partial class Form1 : Form
     {Image knobImg = null;
+        string pythonScript = "C:/Users/Cade/Desktop/VTHack/VTHacks19/Aruduino/file.py";
+        string python = "C:/Python3/python.exe";
+
+        private ProcessStartInfo myProcessStartInfo;
+        myProcessStartInfo = new ProcessStartInfo("C:/Python3/python.exe");
+
+        
         public Form1()
         {
             InitializeComponent();
-            
+
             try {
                 knobImg = Image.FromFile("C:/Users/Cade/Desktop/VTHack/VTHacks19/Soundboard/Assets/knob1.png");
+                Console.WriteLine("Opening Port?");
                 Port.Open();
             }
-#pragma warning disable CS0168 // Variable is declared but never used
             catch (Exception exc) {
-#pragma warning restore CS0168 // Variable is declared but never used
                 MessageBox.Show("No Device connected.\n Verify COM number.");
             }
+
+            Port.DataReceived += Port_DataReceived;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -98,6 +107,29 @@ namespace Soundboard
         {
             playSimpleSound("Funk.wav");
             updateKnob(pictureBox1, (float)(Math.PI));
+        }
+
+
+       
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            string line = Port.ReadLine();
+
+            Console.WriteLine(line);
+
+            if (line.Contains("BTN: 1"))
+            {
+                playSimpleSound("Funk.wav");
+            }
+            if (line.Contains("BTN: 2"))
+            {
+                playSimpleSound("Pop.wav");
+            }
+            if (line.Contains("BTN: 3"))
+            {
+                playSimpleSound("Glass.wav");
+            }
         }
     }
 }
