@@ -1,14 +1,12 @@
 import serial
 from pysndfx import AudioEffectsChain
 from playsound import playsound
-from librosa import load
 rate = 9600
-device_name = "/dev/cu.usbmodem14201"
-port = serial.Serial(device_name, baudrate = rate, timeout = 3.0)
+#device_name = "/dev/cu.usbmodem14201"
+#port = serial.Serial(device_name, baudrate = rate, timeout = 3.0)
 
-infile = "/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/Pop.wav"
-file = "/Users/zeke/Programming/VTHacks19/Assets/Sounds/Good/play.wav"
-
+infile = "/Users/johngarrett/Documents/VTHack19/Assets/Sounds/Good/Pop.wav"
+file = "Users/johngarrett/Documents/VTHack19/Assets/Sounds/Good/play.wav"
 
 playsound(file)
 fx = (

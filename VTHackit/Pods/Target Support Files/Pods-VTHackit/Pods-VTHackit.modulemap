@@ -1,0 +1,6 @@
+framework module Pods_VTHackit {
+  umbrella header "Pods-VTHackit-umbrella.h"
+
+  export *
+  module * { export * }
+}
